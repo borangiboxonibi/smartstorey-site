@@ -9,7 +9,7 @@ export default function Products() {
         <img src="/img/photo/pearltree-suite.webp" alt="" />
         <div className="wrap">
           <p className="mono eyebrow">Products</p><h1>The Smartstorey <span className="o">collection.</span></h1>
-          <p className="lede">{products.length} signature pieces across six families, each made to order in our Bengaluru factory. Every design can be resized, re-finished and re-upholstered to your brand.</p>
+          <p className="lede">{products.length} pieces across seven families, each made to order in our Bengaluru factory. Every design can be resized, re-finished and re-upholstered to your brand.</p>
           <nav className="cat-nav mono" aria-label="Product categories">{categories.map((c) => <Link key={c.slug} href={`/products/${c.slug}/`}>{c.name}</Link>)}</nav>
         </div>
       </section>
@@ -18,7 +18,7 @@ export default function Products() {
           {categories.map((c, i) => {
             const n = products.filter((p) => p.cat === c.slug).length;
             return (
-              <Link key={c.slug} href={`/products/${c.slug}/`} className="tile" data-reveal style={{ transitionDelay: `${(i % 3) * 90}ms` }}>
+              <Link key={c.slug} href={`/products/${c.slug}/`} className={c.specs ? "tile wide" : "tile"} data-reveal style={{ transitionDelay: `${(i % 3) * 90}ms` }}>
                 <img src={c.img} alt={c.name} loading="lazy" />
                 <span className="mono dim">{n} pieces</span><h3>{c.name}</h3><p>{c.short}</p><span className="arrow mono">View range →</span>
               </Link>

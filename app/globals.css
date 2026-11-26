@@ -256,3 +256,24 @@ h3{font-size:1.45rem}
 [data-reveal].in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){[data-reveal]{opacity:1;transform:none;transition:none}.marquee-track,.hero-bg{animation:none}}
 @media(max-width:760px){.hero::after{background:linear-gradient(180deg,rgba(10,9,8,.7) 0%,rgba(10,9,8,.55) 40%,rgba(10,9,8,.85) 75%,var(--bg) 100%)}.hero-foot .mono.dim{display:none}.hero .row .btn{flex:1 1 auto}}
+/* spec-led product cards (engineered wood range) */
+.prod-spec{flex-direction:column;gap:22px;background:radial-gradient(80% 80% at 50% 30%,#f4efe6,var(--mat))}
+.prod-spec .code{font-family:var(--display);font-style:italic;font-size:clamp(2.2rem,3.4vw,3rem);color:#2a2118;line-height:1}
+.prod-spec .sw{display:flex;gap:10px}
+.prod-spec .sw img{width:56px;height:56px;border-radius:50%;object-fit:cover;box-shadow:0 8px 18px -8px rgba(40,30,15,.5)}
+.prod-spec .hint{position:absolute;bottom:14px;left:0;right:0;text-align:center;color:rgba(40,32,22,.45);font-size:.62rem}
+.sizes{margin-top:12px;border-top:1px solid var(--line)}
+.sizes > div{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--line);font-size:.9rem}
+.sizes dt{color:var(--faint);font-size:.64rem;padding-top:3px}
+.sizes dd{color:var(--dim);text-align:right}
+.specbar{display:grid;grid-template-columns:repeat(5,1fr);border-block:1px solid var(--line);margin-bottom:56px}
+.specbar > div{padding:22px 20px;border-left:1px solid var(--line)}
+.specbar > div:first-child{border-left:0;padding-left:0}
+.specbar p{font-size:.95rem}
+.finish-row{display:flex;gap:28px;flex-wrap:wrap;margin-bottom:56px}
+.finish-row figure{display:flex;align-items:center;gap:14px}
+.finish-row img{width:64px;height:64px;border-radius:50%;object-fit:cover}
+@media(max-width:900px){.specbar{grid-template-columns:1fr 1fr}.specbar > div{border-left:0;padding-left:0;border-top:1px solid var(--line)}.specbar > div:first-child{border-top:0}}
+.tiles .tile.wide{grid-column:1/-1;aspect-ratio:auto;min-height:340px;justify-content:center}
+.tile.wide::before{background:linear-gradient(90deg,rgba(10,9,8,.9) 0%,rgba(10,9,8,.6) 50%,rgba(10,9,8,.2) 100%)}
+.tile.wide p{max-width:460px}

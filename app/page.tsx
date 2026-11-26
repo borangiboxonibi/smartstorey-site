@@ -38,7 +38,7 @@ export default function Home() {
           </div>
           <div className="tiles three">
             {categories.map((c, i) => (
-              <Link key={c.slug} href={`/products/${c.slug}/`} className="tile" data-reveal style={{ transitionDelay: `${(i % 3) * 90}ms` }}>
+              <Link key={c.slug} href={`/products/${c.slug}/`} className={c.specs ? "tile wide" : "tile"} data-reveal style={{ transitionDelay: `${(i % 3) * 90}ms` }}>
                 <img src={c.img} alt={c.name} loading="lazy" />
                 <span className="mono dim">{String(i + 1).padStart(2, "0")}</span><h3>{c.name}</h3><p>{c.short}</p>
               </Link>

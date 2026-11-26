@@ -20,6 +20,10 @@ export default async function CategoryPage({ params }: { params: Promise<{ cat: 
         <nav className="cat-nav mono" aria-label="Product categories">{categories.map((x) => <Link key={x.slug} href={`/products/${x.slug}/`} className={x.slug === c.slug ? "on" : undefined}>{x.name}</Link>)}</nav>
       </div></section>
       <section className="section"><div className="wrap">
+        {c.specs && <>
+          <div className="specbar" data-reveal>{c.specs.map(([k, v]) => <div key={k}><span className="mono label">{k}</span><p>{v}</p></div>)}</div>
+          <div className="finish-row" data-reveal>{[["exotic-teak", "Exotic Teak"], ["classic-walnut", "Classic Planked Walnut"], ["thansau-maple", "Thansau Maple"]].map(([f, n]) => <figure key={f}><img src={`/img/finishes/${f}.webp`} alt={`${n} laminate`} loading="lazy" /><figcaption className="mono dim">{n}</figcaption></figure>)}</div>
+        </>}
         <div className="prod-grid">{list.map((p, i) => <ProductCard key={p.slug} p={p} i={i} />)}</div>
       </div></section>
       <section className="section alt"><div className="wrap band" data-reveal>

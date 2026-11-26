@@ -121,7 +121,7 @@ export const process = [
   { t: "White-glove installation", d: "On-time delivery, on-site assembly and final inspection before handover.", time: "On site" },
 ];
 
-export type Category = { slug: string; name: string; short: string; img: string };
+export type Category = { slug: string; name: string; short: string; img: string; specs?: [string, string][] };
 export const categories: Category[] = [
   { slug: "beds", name: "Beds & Headboards", short: "Platform, upholstered and wall-to-wall headboard beds, in wood, laminate and steel.", img: "/img/products/s3-bed.webp" },
   { slug: "storage", name: "Wardrobes & Storage", short: "Fluted, open and hinged wardrobes, hanging niches and floating shelves.", img: "/img/products/v-ward.webp" },
@@ -129,9 +129,11 @@ export const categories: Category[] = [
   { slug: "tables", name: "Tables & Bedsides", short: "Coffee tables, bedsides and side tables in solid wood, veneer and marble.", img: "/img/products/e-table.webp" },
   { slug: "seating", name: "Seating & Sofas", short: "Lounge chairs, armchairs, bed benches and sofas, upholstered to order.", img: "/img/photo/lounge.webp" },
   { slug: "commercial", name: "Reception, Café & Bar", short: "Reception counters, café counters, bar seating and dining sets.", img: "/img/photo/reception.webp" },
+  { slug: "engineered-wood", name: "Engineered Wood Range", short: "Ready-to-specify beds, bedsides, study tables and wardrobes in engineered wood, made in 10 working days.", img: "/img/finishes/classic-walnut.webp",
+    specs: [["Finishes", "Exotic Teak · Classic Planked Walnut · Thansau Maple"], ["Edge banding", "2 mm and 0.8 mm"], ["Board density", "650–680 kg/m³"], ["Hardware", "Ebco"], ["Lead time", "10 working days"]] },
 ];
 
-export type Product = { slug: string; name: string; cat: string; img: string; note: string; for: string[] };
+export type Product = { slug: string; name: string; cat: string; img?: string; note: string; for: string[]; code?: string; sizes?: [string, string][] };
 const P = (slug: string, name: string, cat: string, img: string, note: string, f: string[]): Product => ({ slug, name, cat, img, note, for: f });
 const pi = (n: string) => `/img/products/${n}.webp`;
 const ph = (n: string) => `/img/photo/${n}.webp`;
@@ -176,6 +178,28 @@ export const products: Product[] = [
   P("cane-dining-sets", "Cane dining chairs & benches", "commercial", ph("olive-cafeteria"), "Solid-wood cane chairs, padded benches, laminate tables", ["Hotels", "Co-living"]),
   P("cafe-dining-sets", "Café dining sets", "commercial", ph("cafe-tables"), "Compact tables and chairs for terraces and cafés", ["Workspaces", "Cafés"]),
 ];
+
+const EW = (n: string, name: string, note: string, sizes: [string, string][], f: string[] = ["Hotels", "Co-living"]): Product => ({ slug: n.toLowerCase().replace(/\s+/g, "-"), code: n, name, cat: "engineered-wood", note, for: f, sizes });
+const BED: [string, string][] = [["King", "1980 D × 1830 L mm"], ["Queen", "1980 D × 1520 L mm"]];
+const ST: [string, string][] = [["Standard", "430 D × 450 W mm"]];
+const WD: [string, string][] = [["Single door", "1800 H × 400 W × 450 D mm"], ["Double door", "1800 H × 800 W × 515 D mm"], ["Triple door", "2000 H × 1200 W × 550 D mm"]];
+products.push(
+  EW("EW Bed 1", "Storage bed, low panel headboard", "Box storage under a full-width platform", BED),
+  EW("EW Bed 2", "Storage bed, rounded headboard", "Box storage, softened edges on headboard and footboard", BED),
+  EW("EW Bed 3", "Storage bed, shelf headboard", "Box storage with an open display headboard", BED),
+  EW("EW ST 1", "Open bedside cube", "Single open shelf, clean waterfall sides", ST),
+  EW("EW ST 2", "Two-drawer bedside", "Two full-width drawers with bar handles", ST),
+  EW("EW ST 3", "Open-shelf bedside", "Two open shelves for books and décor", ST),
+  EW("EW ST 4", "Bedside with drawer & niche", "Open niche over a single drawer", ST),
+  EW("EW STB 1", "Study table with side shelves", "Writing desk with open side storage", [["Standard", "400 D × 1030 W × 720 H mm"]]),
+  EW("EW STB 2", "Study table with drawer unit", "Desk with a drawer and closed cabinet", [["Standard", "400 D × 1030 W × 720 H mm"]]),
+  EW("EW STB 3", "Wall-mounted fold-down desk", "Powder-coated 18-gauge steel brackets", [["Standard", "450 D × 600 W mm"]]),
+  EW("EW STB 4", "Two-tier study desk", "Monitor shelf on a powder-coated steel frame", [["Standard", "450 D × 800 W × 760 H mm"]]),
+  EW("EW STB 5", "C-frame sofa side desk", "Slides over a sofa or bed; steel understructure", [["Standard", "380 D × 600 W × 740 H mm"]]),
+  EW("EW WD 1", "Hinged wardrobe, classic", "Shelving and hanging space, single to triple door", WD),
+  EW("EW WD 2", "Hinged wardrobe with drawers", "Shelves, hanging rail and base drawers", WD),
+  EW("EW WD 3", "Hinged wardrobe, tall handle", "Full-height pull handles, shelving and hanging", [WD[0], WD[2]]),
+);
 
 export const packages = [
   { name: "Signature", tier: "Premium", img: pi("h-bed"), d: "Solid wood and veneer, upholstered headboards, marble and fluted accents, lounge seating in every room.", items: ["Upholstered or solid-wood bed", "Fluted wardrobe", "Writing desk & accent chair", "TV & minibar console", "Lounge chair or sofa"] },
