@@ -4,6 +4,7 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Loader from "@/components/Loader";
 import Reveal from "@/components/Reveal";
+import QuoteToast from "@/components/QuoteToast";
 import { site } from "@/lib/data";
 
 export const metadata: Metadata = {
@@ -37,6 +38,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main>{children}</main>
         <Footer />
         <Reveal />
+        <QuoteToast />
       </body>
     </html>
   );

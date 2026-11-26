@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Logo } from "./Logo";
+import QuoteLink from "./QuoteLink";
 import { sectors, categories } from "@/lib/data";
 
 export default function Nav() {
@@ -39,6 +40,7 @@ export default function Nav() {
           <Link href="/about/" className={on("/about")} onClick={close}>About</Link>
           <Link href="/contact/" className="btn btn-sm" onClick={close}>Start a project</Link>
         </nav>
+        <QuoteLink onClick={close} />
         <button className="burger" aria-label="Menu" aria-expanded={open} onClick={() => setOpen(!open)}><i /><i /></button>
       </div>
     </header>

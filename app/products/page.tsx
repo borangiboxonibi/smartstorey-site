@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { categories, products, packages, site } from "@/lib/data";
+import AddPackage from "@/components/AddPackage";
+import { categories, products, packages } from "@/lib/data";
 export const metadata: Metadata = { title: "Products", description: "Hotel, co-living and workspace furniture by Smartstorey: beds, wardrobes, desks, consoles, seating, reception and café furniture, plus complete room packages." };
 export default function Products() {
   return (
@@ -36,7 +37,7 @@ export default function Products() {
               <div>
                 <span className="mono label">{k.tier}</span><h3>{k.name}</h3><p className="dim">{k.d}</p>
                 <ul>{k.items.map((x) => <li key={x}>{x}</li>)}</ul>
-                <a className="btn btn-ghost btn-sm" style={{ marginTop: 18 }} href={`https://wa.me/${site.whatsapp}?text=${encodeURIComponent(`Hi Smartstorey, I'd like a quote for the ${k.name} room package.`)}`} target="_blank" rel="noopener">Quote this package</a>
+                <AddPackage name={k.name} tier={k.tier} img={k.img} />
               </div>
             </div>
           ))}
