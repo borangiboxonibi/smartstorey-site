@@ -277,3 +277,14 @@ h3{font-size:1.45rem}
 .tiles .tile.wide{grid-column:1/-1;aspect-ratio:auto;min-height:340px;justify-content:center}
 .tile.wide::before{background:linear-gradient(90deg,rgba(10,9,8,.9) 0%,rgba(10,9,8,.6) 50%,rgba(10,9,8,.2) 100%)}
 .tile.wide p{max-width:460px}
+/* Engineered Wood: full-scene renders with a finish switcher */
+.prod-scene{aspect-ratio:1/1;position:relative;overflow:hidden;background:var(--mat)}
+.prod-scene>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s var(--ease),transform 1.2s var(--ease)}
+.prod-scene>img.on{opacity:1}
+.prod:hover .prod-scene>img.on{transform:scale(1.03)}
+.prod-scene .no{position:absolute;left:16px;top:14px;z-index:2;color:rgba(40,32,22,.6)}
+.prod-scene .fin{position:absolute;left:12px;bottom:12px;z-index:2;display:flex;align-items:center;gap:8px;padding:7px 12px 7px 8px;border-radius:999px;background:rgba(17,16,14,.62);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.prod-scene .fin button{width:24px;height:24px;padding:0;border-radius:50%;border:1px solid transparent;background:none;cursor:pointer;outline-offset:2px}
+.prod-scene .fin button img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
+.prod-scene .fin button.on{border-color:var(--gold);box-shadow:0 0 0 2px rgba(201,164,106,.35)}
+.prod-scene .fin .mono{font-size:.6rem;color:#ece6dc;margin-left:2px;white-space:nowrap}

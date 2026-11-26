@@ -129,11 +129,12 @@ export const categories: Category[] = [
   { slug: "tables", name: "Tables & Bedsides", short: "Coffee tables, bedsides and side tables in solid wood, veneer and marble.", img: "/img/products/e-table.webp" },
   { slug: "seating", name: "Seating & Sofas", short: "Lounge chairs, armchairs, bed benches and sofas, upholstered to order.", img: "/img/photo/lounge.webp" },
   { slug: "commercial", name: "Reception, Café & Bar", short: "Reception counters, café counters, bar seating and dining sets.", img: "/img/photo/reception.webp" },
-  { slug: "engineered-wood", name: "Engineered Wood Range", short: "Ready-to-specify beds, bedsides, study tables and wardrobes in engineered wood, made in 10 working days.", img: "/img/finishes/classic-walnut.webp",
+  { slug: "engineered-wood", name: "Engineered Wood Range", short: "Ready-to-specify beds, bedsides, study tables and wardrobes in engineered wood, made in 10 working days.", img: "/img/ew/bed3-walnut.webp",
     specs: [["Finishes", "Exotic Teak · Classic Planked Walnut · Thansau Maple"], ["Edge banding", "2 mm and 0.8 mm"], ["Board density", "650–680 kg/m³"], ["Hardware", "Ebco"], ["Lead time", "10 working days"]] },
 ];
 
-export type Product = { slug: string; name: string; cat: string; img?: string; note: string; for: string[]; code?: string; sizes?: [string, string][] };
+export type Finish = "teak" | "walnut" | "maple";
+export type Product = { slug: string; name: string; cat: string; img?: string; note: string; for: string[]; code?: string; sizes?: [string, string][]; finishes?: Finish[]; imgBase?: string };
 const P = (slug: string, name: string, cat: string, img: string, note: string, f: string[]): Product => ({ slug, name, cat, img, note, for: f });
 const pi = (n: string) => `/img/products/${n}.webp`;
 const ph = (n: string) => `/img/photo/${n}.webp`;
@@ -179,7 +180,19 @@ export const products: Product[] = [
   P("cafe-dining-sets", "Café dining sets", "commercial", ph("cafe-tables"), "Compact tables and chairs for terraces and cafés", ["Workspaces", "Cafés"]),
 ];
 
-const EW = (n: string, name: string, note: string, sizes: [string, string][], f: string[] = ["Hotels", "Co-living"]): Product => ({ slug: n.toLowerCase().replace(/\s+/g, "-"), code: n, name, cat: "engineered-wood", note, for: f, sizes });
+// Renders supplied by Smartstorey (HOMELANE ENG WOOD folder), one per finish: /img/ew/<key>-<finish>.webp
+const EWIMG: Record<string, Finish[]> = {
+  "bed-1": ["walnut", "teak", "maple"], "bed-2": ["walnut", "teak", "maple"], "bed-3": ["walnut", "teak", "maple"],
+  "st-1": ["walnut", "teak", "maple"], "st-2": ["walnut", "teak", "maple"], "st-3": ["walnut", "teak", "maple"], "st-4": ["walnut", "teak", "maple"],
+  "stb-1": ["walnut", "teak", "maple"], "stb-2": ["walnut", "teak", "maple"], "stb-3": ["walnut", "teak", "maple"],
+  "wd-1": ["walnut", "teak", "maple"], "wd-2": ["walnut", "teak", "maple"], "wd-3": ["maple", "walnut"],
+};
+const EW = (n: string, name: string, note: string, sizes: [string, string][], f: string[] = ["Hotels", "Co-living"]): Product => {
+  const key = n.toLowerCase().replace(/^ew\s+/, "").replace(/\s+/g, "-");
+  const fin = EWIMG[key];
+  return { slug: n.toLowerCase().replace(/\s+/g, "-"), code: n, name, cat: "engineered-wood", note, for: f, sizes,
+    ...(fin ? { finishes: fin, imgBase: `/img/ew/${key.replace(/-/g, "")}`, img: `/img/ew/${key.replace(/-/g, "")}-${fin[0]}.webp` } : {}) };
+};
 const BED: [string, string][] = [["King", "1980 D × 1830 L mm"], ["Queen", "1980 D × 1520 L mm"]];
 const ST: [string, string][] = [["Standard", "430 D × 450 W mm"]];
 const WD: [string, string][] = [["Single door", "1800 H × 400 W × 450 D mm"], ["Double door", "1800 H × 800 W × 515 D mm"], ["Triple door", "2000 H × 1200 W × 550 D mm"]];
