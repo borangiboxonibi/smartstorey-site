@@ -340,3 +340,6 @@ h3{font-size:1.45rem}
 .quote-empty{min-height:240px;display:flex;flex-direction:column;align-items:flex-start;gap:18px;max-width:560px}
 .display-sm{font-family:var(--display);font-size:clamp(1.8rem,3vw,2.4rem);line-height:1.1}
 .prod-scene .illus{position:absolute;right:16px;top:14px;z-index:2;color:rgba(40,32,22,.45);font-size:.58rem}
+/* studio product photos: full-bleed */
+.prod-mat.prod-photo{padding:0;background:#ece4d8}
+.prod-mat.prod-photo img{width:100%;height:100%;max-width:none;max-height:none;object-fit:cover;box-shadow:none}

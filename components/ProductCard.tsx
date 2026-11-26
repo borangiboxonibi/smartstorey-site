@@ -22,7 +22,7 @@ export default function ProductCard({ p, i }: { p: Product; i: number }) {
       {p.finishes && p.imgBase && finish ? (
         <FinishImage base={p.imgBase} finishes={p.finishes} name={p.name} no={no} value={finish} onChange={setFinish} illustration={p.illustration} />
       ) : p.img ? (
-        <div className="prod-mat"><span className="no mono">{no}</span><img src={p.img} alt={p.name} loading="lazy" /></div>
+        <div className="prod-mat prod-photo"><span className="no mono">{no}</span><img src={p.img} alt={p.name} loading="lazy" /></div>
       ) : (
         <div className="prod-mat prod-spec" aria-hidden="true">
           <span className="no mono">{no}</span>
