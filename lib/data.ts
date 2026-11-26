@@ -186,12 +186,14 @@ const EWIMG: Record<string, Finish[]> = {
   "st-1": ["walnut", "teak", "maple"], "st-2": ["walnut", "teak", "maple"], "st-3": ["walnut", "teak", "maple"], "st-4": ["walnut", "teak", "maple"],
   "stb-1": ["walnut", "teak", "maple"], "stb-2": ["walnut", "teak", "maple"], "stb-3": ["walnut", "teak", "maple"],
   "stb-4": ["walnut", "teak", "maple"], "stb-5": ["walnut", "teak", "maple"],
-  "wd-1": ["walnut", "teak", "maple"], "wd-2": ["walnut", "teak", "maple"], "wd-3": ["maple", "walnut"],
+  "wd-1s": ["walnut", "teak", "maple"], "wd-1d": ["walnut", "teak", "maple"], "wd-1t": ["walnut", "teak", "maple"],
+  "wd-2s": ["walnut", "teak", "maple"], "wd-2d": ["walnut", "teak", "maple"], "wd-2t": ["walnut", "maple"],
+  "wd-3s": ["walnut", "maple"], "wd-3t": ["maple", "walnut"],
 };
-const EW = (n: string, name: string, note: string, sizes: [string, string][], f: string[] = ["Hotels", "Co-living"]): Product => {
-  const key = n.toLowerCase().replace(/^ew\s+/, "").replace(/\s+/g, "-");
+const EW = (n: string, name: string, note: string, sizes: [string, string][], f: string[] = ["Hotels", "Co-living"], k?: string): Product => {
+  const key = k ?? n.toLowerCase().replace(/^ew\s+/, "").replace(/\s+/g, "-");
   const fin = EWIMG[key];
-  return { slug: n.toLowerCase().replace(/\s+/g, "-"), code: n, name, cat: "engineered-wood", note, for: f, sizes,
+  return { slug: (k ? `ew-${k}` : n.toLowerCase().replace(/\s+/g, "-")), code: n, name, cat: "engineered-wood", note, for: f, sizes,
     ...(fin ? { illustration: ["stb-4", "stb-5"].includes(key), finishes: fin, imgBase: `/img/ew/${key.replace(/-/g, "")}`, img: `/img/ew/${key.replace(/-/g, "")}-${fin[0]}.webp` } : {}) };
 };
 const BED: [string, string][] = [["King", "1980 D × 1830 L mm"], ["Queen", "1980 D × 1520 L mm"]];
@@ -210,9 +212,14 @@ products.push(
   EW("EW STB 3", "Wall-mounted fold-down desk", "Powder-coated 18-gauge steel brackets", [["Standard", "450 D × 600 W mm"]]),
   EW("EW STB 4", "Two-tier study desk", "Monitor shelf on a powder-coated steel frame", [["Standard", "450 D × 800 W × 760 H mm"]]),
   EW("EW STB 5", "C-frame sofa side desk", "Slides over a sofa or bed; steel understructure", [["Standard", "380 D × 600 W × 740 H mm"]]),
-  EW("EW WD 1", "Hinged wardrobe, classic", "Shelving and hanging space, single to triple door", WD),
-  EW("EW WD 2", "Hinged wardrobe with drawers", "Shelves, hanging rail and base drawers", WD),
-  EW("EW WD 3", "Hinged wardrobe, tall handle", "Full-height pull handles, shelving and hanging", [WD[0], WD[2]]),
+  EW("EW WD 1", "Single-door wardrobe, classic", "Four adjustable shelves behind a lockable door", [WD[0]], undefined, "wd-1s"),
+  EW("EW WD 1", "Double-door wardrobe, classic", "Shelving and hanging space, lockable doors", [WD[1]], undefined, "wd-1d"),
+  EW("EW WD 1", "Triple-door wardrobe, classic", "Hanging bay plus two shelving bays", [WD[2]], undefined, "wd-1t"),
+  EW("EW WD 2", "Single-door wardrobe with drawers", "Shelves over two full-width base drawers", [WD[0]], undefined, "wd-2s"),
+  EW("EW WD 2", "Double-door wardrobe with drawers", "Shelves, hanging rail and base drawers", [WD[1]], undefined, "wd-2d"),
+  EW("EW WD 2", "Triple-door wardrobe, rounded handles", "Hanging and shelving bays, central lock", [WD[2]], undefined, "wd-2t"),
+  EW("EW WD 3", "Single-door wardrobe, tall handle", "Full-height pull handle, slim footprint", [WD[0]], undefined, "wd-3s"),
+  EW("EW WD 3", "Triple-door wardrobe, tall handle", "Full-height pull handles, shelving and hanging", [WD[2]], undefined, "wd-3t"),
 );
 
 export const packages = [
