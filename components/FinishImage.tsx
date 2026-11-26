@@ -2,10 +2,11 @@
 import type { Finish } from "@/lib/data";
 export const FINISH_LABEL: Record<Finish, string> = { teak: "Exotic Teak", walnut: "Classic Planked Walnut", maple: "Thansau Maple" };
 const SWATCH: Record<Finish, string> = { teak: "exotic-teak", walnut: "classic-walnut", maple: "thansau-maple" };
-export default function FinishImage({ base, finishes, name, no, value, onChange }: { base: string; finishes: Finish[]; name: string; no: string; value: Finish; onChange: (f: Finish) => void }) {
+export default function FinishImage({ base, finishes, name, no, value, onChange, illustration }: { illustration?: boolean; base: string; finishes: Finish[]; name: string; no: string; value: Finish; onChange: (f: Finish) => void }) {
   return (
     <div className="prod-scene">
       <span className="no mono">{no}</span>
+      {illustration && <span className="illus mono">Illustration</span>}
       {finishes.map((x) => (
         <img key={x} src={`${base}-${x}.webp`} alt={`${name} in ${FINISH_LABEL[x]}`} loading="lazy" className={x === value ? "on" : ""} aria-hidden={x !== value} />
       ))}

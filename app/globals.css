@@ -339,3 +339,4 @@ h3{font-size:1.45rem}
 .quote-send .btn{flex:1;min-width:180px}
 .quote-empty{min-height:240px;display:flex;flex-direction:column;align-items:flex-start;gap:18px;max-width:560px}
 .display-sm{font-family:var(--display);font-size:clamp(1.8rem,3vw,2.4rem);line-height:1.1}
+.prod-scene .illus{position:absolute;right:16px;top:14px;z-index:2;color:rgba(40,32,22,.45);font-size:.58rem}

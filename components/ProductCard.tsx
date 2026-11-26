@@ -20,7 +20,7 @@ export default function ProductCard({ p, i }: { p: Product; i: number }) {
   return (
     <article className="prod" data-reveal style={{ transitionDelay: `${(i % 3) * 80}ms` }} id={p.slug}>
       {p.finishes && p.imgBase && finish ? (
-        <FinishImage base={p.imgBase} finishes={p.finishes} name={p.name} no={no} value={finish} onChange={setFinish} />
+        <FinishImage base={p.imgBase} finishes={p.finishes} name={p.name} no={no} value={finish} onChange={setFinish} illustration={p.illustration} />
       ) : p.img ? (
         <div className="prod-mat"><span className="no mono">{no}</span><img src={p.img} alt={p.name} loading="lazy" /></div>
       ) : (
