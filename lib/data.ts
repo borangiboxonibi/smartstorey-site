@@ -2,7 +2,7 @@ export const site = {
   name: "Smartstorey",
   legal: "Smartstorey LLP",
   email: "sales@smartstorey.com",
-  phones: ["+91 80889 92110", "+91 96504 45779"],
+  phones: ["+91 80889 92110"],
   whatsapp: "918088992110",
   factory: "1759/A, 34th Cross Rd, near SLV Meadows, Kadarenahalli Park, Banashankari 2nd Stage, Bengaluru 560070",
   office: "Regus, Supreme Overseas Exports Building, Krishna Rajendra Rd, 7th Block, Jayanagar, Bengaluru 560070",
